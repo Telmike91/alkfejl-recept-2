@@ -15,6 +15,7 @@
       <ul class="list-group">
         {% for recipe in category.topRecipes %}
         <li class="list-group-item">
+          <a href="/recipes/{{ recipe.id }}";
           {{ recipe.name }}
         </li>
         {% endfor %}

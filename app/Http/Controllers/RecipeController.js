@@ -2,6 +2,8 @@
 
 const Database = use('Database')
 const Category = use('App/Model/Category')
+const Recipe = use('App/Model/Recipe')
+const Validator = use('Validator')
 
 class RecipeController {
   * index(request, response) {
@@ -14,10 +16,53 @@ class RecipeController {
       category.topRecipes = topRecipes.toJSON()
     }
 
+
+
     yield response.sendView('main', {
       categories: categories.toJSON()
     }) 
   }
+
+  * create(request, response) {
+      const categories = yield Category.all();
+      yield response.sendView('createRecipe', {
+       categories: categories.toJSON()
+      }) 
+  }
+
+  * doCreate(request, response) {
+    const recipeData = request.except('_csrf');
+    const rules = {
+      name: 'required',
+      ingredients: 'required',
+      instructions: 'required',
+      category_id: 'required',      
+    }
+
+    const validation = yield Validator.validateAll(recipeData, rules);
+
+    if (validation.fails()) {
+      yield request
+          .withAll()
+          .andWith({ errors: validation.messages() })
+          .flash()
+
+      response.redirect('/')
+      return
+    } 
+
+    yield Recipe.create(recipeData);
+
+    //console.log(recipeData);
+    response.send(recipeData);
+  }
+
+  * show(request, response) {
+    yield response.sendView('showRecipe');
+  }
+
+
+
 }
 
 module.exports = RecipeController
