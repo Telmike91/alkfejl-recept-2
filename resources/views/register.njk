@@ -1,0 +1,51 @@
+{% extends 'layout' %}
+
+{% block content %}
+
+<h2>Regisztráció</h2>
+
+{% if old('errors') %}
+<ul>
+  {% for error in old('errors') %}
+  <li>{{ error.message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+<form class="form-horizontal" action="" method="POST">
+
+ {{ csrfField }}
+
+  <fieldset> 
+    <div class="form-group">
+      <label for="username" class="col-lg-2 control-label">Felhasználónév</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="username" value = "{{ old(username) }}" name="username" placeholder="Felhasználó név">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email" class="col-lg-2 control-label">E-mail</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="email" value = "{{ old(email) }}" name="email" placeholder="Email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password" class="col-lg-2 control-label">Jelszó</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control" id="password" value = "" name="password" placeholder="Jelszó">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password-confirm" class="col-lg-2 control-label">Jelszó újra</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control" id="password_confirm" value = "" name="password_confirm" placeholder="Jelszó újra">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+{% endblock %}
