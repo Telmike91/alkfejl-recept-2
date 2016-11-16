@@ -73,7 +73,7 @@
     },
     "adonis-validation-provider": {
       "version": "3.0.4",
-      "from": "adonis-validation-provider@>=3.0.4 <4.0.0",
+      "from": "adonis-validation-provider@latest",
       "resolved": "https://registry.npmjs.org/adonis-validation-provider/-/adonis-validation-provider-3.0.4.tgz"
     },
     "ansi": {

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {% block styles %}{% endblock %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,21 +29,22 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">iRecept</a>
+          <a class="navbar-brand" href="/">iRecept</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
           <ul class="nav navbar-nav">
-            <li><a href="#">Receptek böngészése</a></li>
+            <li><a href="/recipes">Receptek böngészése</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if currentUser %}
-              <li class="navbar-text">Üdzövlet, {{ currentUser.username }}!</li>
-              <li><a href="/logout">Kilépés</a></li>              
+            <li class="navbar-text">Üdv, {{ currentUser.username }}!</li>
+            <li><a href="/logout">Kilépés</a></li>
             {% else %}
-              <li><a href="/login">Belépés</a></li>
-              <li><a href="/register">Regisztráció</a></li>
+            <li><a href="/login">Belépés</a></li>
+            <li><a href="/register">Regisztráció</a></li>
             {% endif %}
+            
           </ul>
         </div>
       </div>
@@ -51,11 +53,11 @@
     <div class="container">
       {% block content %}{% endblock %}
     </div>
-
-
+    
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% block scripts %}{% endblock %}
   </body>
 </html>
