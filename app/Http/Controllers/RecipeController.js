@@ -7,6 +7,17 @@ const User = use('App/Model/User')
 const Validator = use('Validator')
 
 class RecipeController {
+  * ajaxDelete(request, response) {   
+      const id = request.param('id')
+      const recipe = yield Recipe.find(id)
+      if (!recipe) {
+        response.notFound('Recipe does not exist')
+        return
+      }
+      yield recipe.delete()
+      response.ok({success: true});
+  }
+
   * index(request, response) {
     // const categories = yield Database.from('categories').select('*')
     // response.send(categories)

@@ -14,6 +14,9 @@ Route.get('/recipes/:id', 'RecipeController.show')
 Route.get('/recipes/:id/edit', 'RecipeController.edit').middleware('auth')
 Route.post('/recipes/:id/edit', 'RecipeController.doEdit').middleware('auth')
 Route.get('/recipes/:id/delete', 'RecipeController.doDelete').middleware('auth')
+Route.group('ajax', function () {
+  Route.delete('/recipes/:id/delete', 'RecipeController.ajaxDelete').middleware('auth')
+}).prefix('/ajax')
 // Route.delete('/recipes/:id', 'RecipeController.doDelete')
 Route.get('/recipes', 'RecipeController.search')
 

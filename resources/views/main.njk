@@ -1,10 +1,26 @@
 {% extends 'layout' %}
 
+{% block styles%}
+
+{% endblock %}
+
+
 {% block scripts %}
 <script src="/scripts/main.js"></script>
+<script src="/scripts/autosuggest.js" ></script>
 {% endblock %}
 
 {% block content %}
+
+<form action="/recipes" method="GET" style="position: relative;">
+  {{ csrfField | safe }}
+  <div class="input-group search-box">
+    <input type="text" class="form-control recipe-search" placeholder="Keresés..." name="recipeName" autocomplete="off">
+    <span class="input-group-btn">
+      <button class="btn btn-info" type="submit">Mehet!</button>
+    </span>
+  </div>
+</form>
 
 <h2>{{ name }}</h2>
 
