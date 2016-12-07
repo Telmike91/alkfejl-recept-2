@@ -10,6 +10,12 @@ class UserController {
     yield response.sendView('register')
   }
 
+  /** ajaxLogin (request, response) {
+    response.send({
+      success: false
+    })
+  }*/
+
   * login (request, response) {
     yield response.sendView('login')
   }
@@ -46,7 +52,7 @@ class UserController {
     response.redirect('/');
   }
 
-  * doLogin (request, response) {
+  * ajaxLogin (request, response) {
     const email = request.input('email')
     const password = request.input('password')
 
@@ -54,17 +60,12 @@ class UserController {
       const login = yield request.auth.attempt(email, password) 
 
       if (login) {
-        response.redirect('/')
+        response.ok({ success: true })
         return
       }
     }
     catch (err) {
-      yield request
-        .withAll()
-        .andWith({ errors: [err] })
-        .flash()
-
-      response.redirect('back')
+      response.ok({ success: false })
       return
     }
   }

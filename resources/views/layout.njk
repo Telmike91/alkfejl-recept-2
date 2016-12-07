@@ -19,7 +19,7 @@
     <![endif]-->
   </head>
   <body>
-
+  <div id="navContainer">
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -41,7 +41,7 @@
             <li class="navbar-text">Üdv, {{ currentUser.username }}!</li>
             <li><a href="/logout">Kilépés</a></li>
             {% else %}
-            <li><a href="/login">Belépés</a></li>
+            <li><a href="/login" id="btnLogin">Belépés</a></li>
             <li><a href="/register">Regisztráció</a></li>
             {% endif %}
             
@@ -49,6 +49,7 @@
         </div>
       </div>
     </nav>
+  </div>
 
     <div class="container">
       {% block content %}{% endblock %}
